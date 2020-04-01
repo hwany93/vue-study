@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+    </div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World'
+        },
+        computed: {
+            /// computed value 는 한번 호출하면 다른 반응성을 가지면 캐시처리 된다.
+            reversedMsg: {
+                /// 해당 value에 getter,setter 를 지원한다
+                get () {
+                    return this.msg.split('').reverse().join('')
+                },
+                set (value) {
+                   this.msg = value;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

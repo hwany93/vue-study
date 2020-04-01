@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{ reversedMsg }}</div>
+    <div>{{ reversedMsg }}</div>
+    <div>{{ reversedMsg }}</div>
+</div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello World'
+        },
+        computed: {
+            reversedMsg: {
+                get () {
+                    return this.msg.split('').reverse().join('')
+                },
+                set (value) {
+                    this.msg = value;
+                }
+            }
+        },
+        watch: {
+            /// 메시지 변수의 변화를 핸들링 한다
+            msg (newMsg) {
+                console.log('New Data: ' + newMsg)
+            },
+            reversedMsg (newMsg) {
+                console.log('New reversedMsg: ' + newMsg)
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue test</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div ref="msg">{{ msg }}</div>
+        <button v-on:click="changeMessage">Change!</button>
+    </div>
+    <div ref="div"></div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            msg : 'hello vue!'
+        },
+        beforeCreate() {
+            console.log('beforeCreate!', this.msg)
+        },
+        created () {
+            console.log('created!', this.msg)
+        },
+        beforeMount () {
+            console.log('beforeMount',this.$refs.div)
+        },
+        mounted() {
+            console.log('mounted!', this.$refs.div)
+        },
+        beforeUpdate () {
+            console.log('beforeUpdate', this.$refs.msg.innerText)
+        },
+        updated() {
+            console.log('update', this.$refs.msg.innerText)
+        },
+        beforeDestroy () {
+            console.log('beforeDestroy')
+        },
+        methods: {
+            changeMessage () {
+                this.msgA = 'change word!'
+            }
+        },
+        computed: {
+
+        },
+        watch: {
+            msgA (value) {
+                console.log(value);
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

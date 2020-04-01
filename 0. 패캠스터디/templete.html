@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <style>
+        .normal{
+            color: red;
+        }
+
+        .active{
+            color: blue;
+        }
+    </style>
+    <div id="app">
+        <!-- 한번만 바인딩 -->
+        <div v-once>{{msg}}</div>
+        <div>{{msg}}</div>
+        <div>{{msg}}</div>
+
+        <!-- html tag 적용 -->
+        <div v-html="msg"></div>
+
+        <!-- 자바스크립트의 표현식을 사용할수 있다-->
+        <div>{{ number + 2 }}</div>
+
+        <!-- 단순한 표현식만 사용가능 하다 로직 사용은 안됨 -->
+        <div>{{ Math.round(1.7) }}</div>
+
+        <!-- v-bind:class -> :class 로 생략 가능 -->
+        <!-- v-on:click -> @:click 로 생략 가능 -->
+        <div v-bind:class="className"
+             v-on:click="changeClassName">{{ msg }}</div>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el : '#app',
+        data : {
+            msg : 'Hello Vue!<br/>Good job',
+            number: 2,
+            className: 'normal'
+        },
+        methods: {
+            changeClassName() {
+                this.className = 'active'
+            }
+        }
+    })
+</script>
+</html>
