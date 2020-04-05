@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+        }
+
+        .box--red {
+            background-color: red;
+        }.box--blue {
+            background-color: blue;
+        }.box--gray {
+            background-color: gray;
+        }
+    </style>
+    <div id="app">
+        <!--
+        #. colorState 가 red 일때 렌더링 합니다.
+        #. if else 구문으로 작성하면 차례대로 렌더링을 검사하다가 통과되면 더이상 렌더링 하지 않습니다.
+        #. 단 형제 요소여야 유효 합니다.
+        -->
+        <div v-if="colorState === 'red'"
+             class="box box--red"></div>
+        <div v-else-if="colorState === 'blue'"
+             class="box box--blue"></div>
+        <div else="colorState === 'red' && colorState !== 'blue'"
+             class="box box--gray"></div>
+    </div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            colorState: 'blue'
+        }
+    })
+</script>
+</body>
+</html>

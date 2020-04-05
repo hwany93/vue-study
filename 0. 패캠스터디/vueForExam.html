@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="pushTodo">push</button>
+        <button @click="addHomePage">addHomePage</button>
+        <ul class="todos">
+            <li v-for="(todo , index) in todos"
+                v-key="index">
+                {{ todo.title }}
+            </li>
+        </ul>
+        <ul class="heropy">
+            <!--
+            #.객체 인덱스는 값, 키, 인덱스 순으로 정의해야 합니다
+            #.객체의 속성은 렌더링 이전에 정해집니다. 정의하지 않은 속성은 추후에 추가해도 반응성이 없는 데이터입니다.
+            #.Object.assign( {} , vm.heropy, { homepage : 'heropy.blog'}) || Vue.set 과 같은 방법을 쓰면 객체에 새로운 반응성을 병합시킬 수 있습니다.
+            -->
+            <li v-for="(value, key, index) in heropy"
+                :key="index"
+            >
+                {{value}}
+            </li>
+        </ul>
+    </div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            todos: [
+                {title : '아침먹기'},
+                {title : '점심먹기'},
+                {title : '저녁먹기'}
+            ],
+            heropy: {
+                name: 'HEROPY',
+                age: 35
+            }
+        },
+        methods: {
+            /// Vue 는 배열에 반응성을 주려면 변이 메소드를 사용해야 합니다.  ex)push,pop,shift,unshift,splice,sort,reverse
+            pushTodo() {
+                //this.todos.push({title:'야식먹기'})
+                Vue.set(this.todos, 3, {title: '야식먹기!'})
+            },
+            addHomePage() {
+                this.$set(this.heropy,
+                    'homePage', 'babo'
+                )
+            }
+        }
+    })
+</script>
+</body>
+</html>
