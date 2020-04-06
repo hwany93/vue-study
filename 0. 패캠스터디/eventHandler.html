@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <li v-for="(todo, index) in todos"
+        :key="index"
+        :class="'item-' + (index+1)"
+        @click="clickMethod">
+        {{ todo.title }}
+    </li>
+</div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            todos: [
+                {title: '아침먹기'},
+                {title: '점심먹기'},
+                {title: '저녁먹기'}
+            ]
+        },
+        methods: {
+            clickMethod(title, event) {
+                console.log(title),
+                console.log(event)
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+    #. v-model 여타 다른 v-tag 와 다르게 양방향 데이터 바인딩을 지원해줍니다.
+    #. v-model 을 이용한 실시간 데이터 바인딩 처리에서 한글은 적합하지 않습니다.
+    #. 아래와 같이 target.value 를 특정 문자 데이터에 넣어주는 방식을 추천합니다.
+    단 초기 렌더링에 자료가 빠질수 있으니 초기 렌더링에는 단방향 자료 입력을 하도록 합시다.
+    #. $event -> 해당하는 이벤트의 자기자신 입니다.
+    #. @input : 입력이 있을때마다, @change : 값의 변화를 주었을때, v-model 에 lazy 를 적용해도 됩니다.
+    -->
+    <!--<input type="text"
+           @change="bindMessage"
+           :value="message">-->
+    <input type="text" v-model.trim="message">
+    <div>{{message}}</div>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            message : 'hi~'
+        },
+        methods: {
+            bindMessage (event) {
+                this.message = event.target.value;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
